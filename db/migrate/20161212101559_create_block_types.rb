@@ -3,7 +3,7 @@ class CreateBlockTypes < ActiveRecord::Migration[5.0]
     create_table :block_types do |t|
       t.string :block_type
       t.integer :length
-      t.integer :width
+      t.integer :height
       t.integer :depth
       t.integer :weight
 

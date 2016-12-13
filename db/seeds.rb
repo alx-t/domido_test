@@ -1,7 +1,5 @@
 #
 
-bt = BlockType.create block_type: "main block", length: 40, width: 20, depth: 10
-
 house = House.create length: 600, width: 500, floors: 1, floor_height: 280
 
 v1 = Wall.create house: house, wall_code: 'V1', coordinates:
@@ -28,3 +26,13 @@ Element.create wall: p2, element_type: "door",
                coordinates: {start: {x: 50, y: 10}, end: {x: 150, y: 210}}
 p3 = Wall.create house: house, wall_code: 'P3',
                  coordinates: {start: {x: 150, y: 250}, end: {x: 150, y: 500}}
+
+b = BlockType.create block_type: "main block", length: 40, height: 20, depth: 10
+
+(house.floor_height / b.height).times do |i|
+  ((v1.coordinates['end']['x'] - v1.coordinates['start']['x']) / b.length).times do |j|
+    Block.create block_type: b, wall: v1,
+                 coordinates: {start: {x: (j * b.length), y: i * b.height},
+                               end: {x: (j * b.length + b.length), y: i * b.height}}
+  end
+end

@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20161213090725) do
   create_table "block_types", force: :cascade do |t|
     t.string   "block_type"
     t.integer  "length"
-    t.integer  "width"
+    t.integer  "height"
     t.integer  "depth"
     t.integer  "weight"
     t.datetime "created_at", null: false
