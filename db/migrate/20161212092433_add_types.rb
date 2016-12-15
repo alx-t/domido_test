@@ -1,6 +1,7 @@
 class AddTypes < ActiveRecord::Migration[5.0]
   def change
     enable_extension 'uuid-ossp' unless extension_enabled?('uuid-ossp')
+    enable_extension 'citext' unless extension_enabled?('citext')
 
     reversible do |typ|
       typ.up do

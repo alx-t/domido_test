@@ -1,9 +1,8 @@
 class CreateBlocks < ActiveRecord::Migration[5.0]
   def change
-    create_table :blocks do |t|
+    create_table :blocks, id: :uuid do |t|
       t.references :block_type, foreign_key: true
       t.references :wall, type: :uuid, foreign_key: true
-      t.jsonb :coordinates
 
       t.timestamps
     end

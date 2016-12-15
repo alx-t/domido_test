@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213090725) do
+ActiveRecord::Schema.define(version: 20161215135949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+  enable_extension "citext"
 
   create_table "block_types", force: :cascade do |t|
     t.string   "block_type"
@@ -26,14 +27,23 @@ ActiveRecord::Schema.define(version: 20161213090725) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "blocks", force: :cascade do |t|
+  create_table "blocks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.integer  "block_type_id"
     t.uuid     "wall_id"
-    t.jsonb    "coordinates"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["block_type_id"], name: "index_blocks_on_block_type_id", using: :btree
     t.index ["wall_id"], name: "index_blocks_on_wall_id", using: :btree
+  end
+
+  create_table "coordinates", force: :cascade do |t|
+    t.string   "coordinatable_type"
+    t.uuid     "coordinatable_id"
+    t.jsonb    "start"
+    t.jsonb    "end"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["coordinatable_type", "coordinatable_id"], name: "index_coordinates_on_coordinatable_type_and_coordinatable_id", using: :btree
   end
 
 # Could not dump table "elements" because of following StandardError
@@ -51,9 +61,8 @@ ActiveRecord::Schema.define(version: 20161213090725) do
   create_table "walls", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "house_id"
     t.string   "wall_code"
-    t.jsonb    "coordinates"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["house_id"], name: "index_walls_on_house_id", using: :btree
   end
 
