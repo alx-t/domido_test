@@ -13,10 +13,14 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
+gem 'responders'
+gem 'active_model_serializers'
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -28,4 +32,5 @@ end
 
 group :test do
   gem 'shoulda-matchers'
+  gem 'json_spec'
 end
