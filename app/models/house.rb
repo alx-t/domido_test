@@ -1,5 +1,5 @@
 class House < ApplicationRecord
-  has_many :walls
+  has_many :walls, dependent: :destroy
 
   validates :length, presence: true,
             numericality: { only_integer: true, greater_than: 0 }

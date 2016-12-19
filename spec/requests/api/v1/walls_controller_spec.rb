@@ -39,6 +39,10 @@ describe 'Wall API' do
         expect(response.body).to be_json_eql(wall.send(attr.to_sym).to_json).at_path("wall/#{attr}")
       end
     end
+
+    #TODO contains elements
+    #TODO contains blocks
+    #TODO contains coordinates
   end
 
   describe 'POST /create' do
@@ -78,6 +82,6 @@ describe 'Wall API' do
     end
   end
 
-  describe 'PATCH /update' do
-  end
+  describe 'PATCH /update'
+  describe 'DELETE /delete'
 end

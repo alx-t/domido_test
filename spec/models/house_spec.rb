@@ -13,4 +13,6 @@ RSpec.describe House, type: :model do
 
   it { should validate_presence_of :floor_height }
   it { should validate_numericality_of(:floor_height).is_greater_than(0).only_integer }
+
+  it { should have_many(:walls).dependent(:destroy) }
 end

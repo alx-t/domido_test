@@ -8,4 +8,6 @@ RSpec.describe Wall, type: :model do
   it { should validate_length_of(:wall_code).is_at_least(2) }
 
   it { should have_one(:coordinate).dependent(:destroy) }
+  it { should have_many(:elements).dependent(:destroy) }
+  it { should have_many(:blocks).dependent(:destroy) }
 end
