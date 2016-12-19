@@ -16,6 +16,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'responders'
 gem 'active_model_serializers'
 
+gem 'interactor'
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry-rails'

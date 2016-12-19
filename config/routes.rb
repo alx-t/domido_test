@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         resources :walls, only: [:index, :show, :create] do
           resources :elements, only: [:index, :show, :create]
         end
+        resources :blocks, only: [:create]
       end
     end
   end
