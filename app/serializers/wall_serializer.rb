@@ -6,4 +6,9 @@ class WallSerializer < ActiveModel::Serializer
     has_many :blocks
     has_one :coordinate
   end
+
+  class HouseWall < self
+    has_many :elements
+    has_many :coordinate
+  end
 end

@@ -4,5 +4,11 @@ class HouseSerializer < ActiveModel::Serializer
 
   class House < self
     has_many :walls
+
+    def walls
+      object.walls.map {
+        |wall| WallSerializer::HouseWall.new(wall).as_json
+      }
+    end
   end
 end

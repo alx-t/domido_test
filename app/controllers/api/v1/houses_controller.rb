@@ -5,7 +5,9 @@ class Api::V1::HousesController < Api::V1::BaseController
   end
 
   def show
-    respond_with House.find(params[:id]), serializer: HouseSerializer::House
+    respond_with House
+                  .includes(walls: [:coordinate, :elements])
+                  .find(params[:id]), serializer: HouseSerializer::House
   end
 
   def create

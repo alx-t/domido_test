@@ -57,6 +57,8 @@ describe 'House API' do
     context 'with valid attributes' do
       it 'returns create status' do
         post '/api/v1/houses', as: :json, params: { house: attributes_for(:house) }
+        p response.status
+        p response.body
         expect(response).to be_success
       end
 
